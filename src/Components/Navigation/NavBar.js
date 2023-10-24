@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import { Nav } from "react-bootstrap";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 const NavBar = () => {
+  const login=useSelector(state=>state.auth.token)
   const mode=useSelector(state=>state.auth.mode)
   return (
     <div>
@@ -12,6 +13,7 @@ const NavBar = () => {
         <Container>
           <Navbar.Brand >Mail Box</Navbar.Brand>
           <Nav>
+          {login && <Nav.Link as={Link} to="/composeEmail">Compose Email</Nav.Link>}
            {mode==='signUp' &&  <Nav.Link as={Link} to="/signup">SignUp</Nav.Link>}
             {mode==='login' && <Nav.Link as={Link}  to="/login">Login</Nav.Link>}
             

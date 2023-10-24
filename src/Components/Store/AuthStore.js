@@ -1,6 +1,8 @@
+import { startTransition } from "react"
+
 const { createSlice } = require("@reduxjs/toolkit")
 
-const initialAuthState={mode:'login'}
+const initialAuthState={mode:'login',token:false,email:''}
 
 
 const authSlice=createSlice({
@@ -13,6 +15,13 @@ const authSlice=createSlice({
         },
         setSignUp(state){
             state.mode='signUp'
+        },
+        setTokenId(state,action){
+            state.token=true
+            localStorage.setItem('login',action.payload)
+        },
+        setUserEmail(state,action){
+            state.email=action.payload
         }
 
     }

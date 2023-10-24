@@ -45,10 +45,14 @@ const Login = () => {
         if (data.idToken) {
           setAlert({
             ...alert,
+          
             message: "Login is Successful",
             variant: "success",
-          });
+          })
+          dispatch(authActions.setUserEmail(details.email))
         }
+
+        dispatch(authActions.setTokenId(data.idToken))
         console.log(data.idToken);
       }).catch((err)=>{
         setAlert({...alert,message:'wrong credentials',variant:'warning'})

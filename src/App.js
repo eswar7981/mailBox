@@ -8,19 +8,24 @@ import { Navbar } from 'react-bootstrap';
 import { Switch } from 'react-router-dom/cjs/react-router-dom.min';
 import { Route } from 'react-router-dom/cjs/react-router-dom';
 import Signup from './Components/Pages/Signup';
+import ComposeMail from './Components/Pages/ComposeMail';
 function App() {
   return (
     <>
+    
     <header>
     <NavBar></NavBar>
     </header>
-
+     
     <Switch>
       <Route path="/login">
         <Login></Login>
       </Route>
       <Route path="/signup">
         <Signup></Signup>
+      </Route>
+      <Route path="/composeEmail">
+        <ComposeMail></ComposeMail>
       </Route>
     </Switch>
 
