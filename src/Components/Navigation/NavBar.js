@@ -13,6 +13,8 @@ const NavBar = () => {
         <Container>
           <Navbar.Brand >Mail Box</Navbar.Brand>
           <Nav>
+            {login && <Nav.Link as={Link} to="/sent">Mails Sent</Nav.Link>}
+            {login && <Nav.Link as={Link} to="/inbox">Inbox</Nav.Link>}
           {login && <Nav.Link as={Link} to="/composeEmail">Compose Email</Nav.Link>}
            {mode==='signUp' &&  <Nav.Link as={Link} to="/signup">SignUp</Nav.Link>}
             {mode==='login' && <Nav.Link as={Link}  to="/login">Login</Nav.Link>}

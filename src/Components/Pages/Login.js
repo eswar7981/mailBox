@@ -49,7 +49,8 @@ const Login = () => {
             message: "Login is Successful",
             variant: "success",
           })
-          dispatch(authActions.setUserEmail(details.email))
+          const trimmedEmail=details.email.replace("@gmail.com","")
+          dispatch(authActions.setUserEmail(trimmedEmail))
         }
 
         dispatch(authActions.setTokenId(data.idToken))

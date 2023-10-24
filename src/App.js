@@ -1,4 +1,5 @@
 import logo from './logo.svg';
+import Inbox from './Components/Pages/Inbox';
 import './App.css';
 import Login from './Components/Pages/Login';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -9,6 +10,7 @@ import { Switch } from 'react-router-dom/cjs/react-router-dom.min';
 import { Route } from 'react-router-dom/cjs/react-router-dom';
 import Signup from './Components/Pages/Signup';
 import ComposeMail from './Components/Pages/ComposeMail';
+import Sent from './Components/Pages/Sent';
 function App() {
   return (
     <>
@@ -18,6 +20,13 @@ function App() {
     </header>
      
     <Switch>
+      <Route path="/inbox">
+        <Inbox>
+        </Inbox>
+      </Route>
+      <Route path="/sent">
+        <Sent></Sent>
+      </Route>
       <Route path="/login">
         <Login></Login>
       </Route>
@@ -27,6 +36,7 @@ function App() {
       <Route path="/composeEmail">
         <ComposeMail></ComposeMail>
       </Route>
+      
     </Switch>
 
     </>

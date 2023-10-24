@@ -8,11 +8,11 @@ import { useSelector } from "react-redux";
 import { DEFAULT_BREAKPOINTS } from "react-bootstrap/esm/ThemeProvider";
 const ComposeMail = () => {
 
-
+ 
   const [details, setDetails] = useState({ email: "", mailContent: "" });
   const [editorState, setEditorState] = useState(EditorState.createEmpty());
   const email=useSelector((state)=>state.auth.email)
-  const trimmedEmail=email.replace("@gmail.com","")
+  
   const onEditorStateChange = (editorState) => {
     setEditorState(editorState);
     setDetails({...details,'mailContent':editorState.getCurrentContent().getPlainText()})
@@ -29,14 +29,16 @@ const ComposeMail = () => {
   
     e.preventDefault();
 
- 
-    fetch(`https://mail-box-66aab-default-rtdb.firebaseio.com/mails/${trimmedEmail}/sent.json`,
+    const d=new Date()
+    const date=d.getHours()+':'+d.getMinutes()+':'+d.getSeconds()+' '+d.getDay()+'-'+d.getMonth()+'-'+d.getFullYear();
+    const trimmedRecievedMail=details.email.replace('@gmail.com',"")
+    fetch(`https://mail-box-66aab-default-rtdb.firebaseio.com/mails/${email}/sent.json`,
     {
       method:"POST",
       body:JSON.stringify({
-        sentBy:email,
+        sentBy:trimmedRecievedMail,
         emailContent:details.mailContent,
-        date:Date()
+        date:date
       }),
       headers:{
         "Content-type":"application/json"
@@ -48,14 +50,15 @@ const ComposeMail = () => {
         console.log(res.json())
       }
     })
-    const trimmedRecievedMail=details.email.replace('@gmail.com',"")
+    
+   
     fetch(`https://mail-box-66aab-default-rtdb.firebaseio.com/mails/${trimmedRecievedMail}/recieved.json`,
     {
       method:"POST",
       body:JSON.stringify({
-        sentBy:email,
+        recievedBy:email,
         emailContent:details.mailContent,
-        date:Date()
+        date:date
       }),
       headers:{
         "Content-type":"application/json"
