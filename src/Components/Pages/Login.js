@@ -6,8 +6,10 @@ import { authActions } from "../Store/AuthStore";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { Alert } from "react-bootstrap";
+import { useHistory } from "react-router-dom";
 
 const Login = () => {
+  const history=useHistory()
   const [alert, setAlert] = useState({ message: "", variant: "" });
   const [details, setDetails] = useState({ email: "", password: "" });
 
@@ -39,29 +41,32 @@ const Login = () => {
         if (res.ok) {
           return res.json();
         } else {
-          }
+        }
       })
       .then((data) => {
         if (data.idToken) {
           setAlert({
             ...alert,
-          
+
             message: "Login is Successful",
             variant: "success",
-          })
-          const trimmedEmail=details.email.replace("@gmail.com","")
-          dispatch(authActions.setUserEmail(trimmedEmail))
+          });
+          const trimmedEmail = details.email.replace("@gmail.com", "");
+          dispatch(authActions.setUserEmail(trimmedEmail));
         }
 
-        dispatch(authActions.setTokenId(data.idToken))
-        console.log(data.idToken);
-      }).catch((err)=>{
-        setAlert({...alert,message:'wrong credentials',variant:'warning'})
-      }
-
-      )
+        dispatch(authActions.setTokenId(data.idToken));
+      })
+      .catch((err) => {
+        setAlert({
+          ...alert,
+          message: "wrong credentials",
+          variant: "warning",
+        });
+      });
 
     setDetails({ email: "", password: "" });
+    history.push('/inbox')
   };
 
   const setPasswordHandler = (e) => {

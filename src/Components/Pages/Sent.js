@@ -45,7 +45,9 @@ const Sent = () => {
   }, []);
 
   return (
+
     <div>
+      {mailsSent.length===0 &&  <div className="empty"><h1>😞No Mails were Sent</h1></div> }
       {mailsSent.map((mail) => (
         <>
           <div className="cont">

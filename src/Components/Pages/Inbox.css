@@ -5,3 +5,11 @@
     border-radius: 50%;
     display: inline-block;
   }
+
+
+.empty{
+    display:flex;
+    justify-content: center;
+    align-items:center;
+
+}
