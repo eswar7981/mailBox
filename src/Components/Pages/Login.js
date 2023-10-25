@@ -66,7 +66,7 @@ const Login = () => {
       });
 
     setDetails({ email: "", password: "" });
-    history.push('/inbox')
+    history.push("/inbox")
   };
 
   const setPasswordHandler = (e) => {

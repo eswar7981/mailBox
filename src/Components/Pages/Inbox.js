@@ -16,7 +16,9 @@ const Inbox = () => {
   const dispatch = useDispatch();
   const mails = useSelector((state) => state.auth.recievedMails);
   useEffect(() => {
+    
     async function Data() {
+     
       try {
         const response = await fetch(
           `https://mail-box-66aab-default-rtdb.firebaseio.com/mails/${mail}/recieved.json`,
@@ -46,8 +48,8 @@ const Inbox = () => {
         alert(err);
       }
     }
-    Data();
     setUpdate(false)
+    setInterval(Data,2000)
   }, [token,update]);
 
   const deleteMail=(e,id)=>{
