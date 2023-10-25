@@ -7,6 +7,7 @@ const initialAuthState = {
   token: false,
   email: "",
   emailTo: "",
+  logout:false,
   recievedMails: [],
   sentMails: [],
 };
@@ -33,7 +34,6 @@ const authSlice = createSlice({
       state.recievedMails = action.payload;
     },
     setSentMails(state, action) {
-      console.log(action.payload);
       state.sentMails = action.payload;
     },
   },
